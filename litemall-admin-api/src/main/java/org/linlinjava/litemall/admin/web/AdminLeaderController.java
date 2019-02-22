@@ -7,12 +7,16 @@ import org.linlinjava.litemall.admin.annotation.RequiresPermissionsDesc;
 import org.linlinjava.litemall.core.util.RegexUtil;
 import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.db.domain.LitemallLeader;
+import org.linlinjava.litemall.db.domain.LitemallUser;
 import org.linlinjava.litemall.db.service.LitemallLeaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.linlinjava.litemall.admin.util.AdminResponseCode.*;
 
@@ -32,12 +36,16 @@ public class AdminLeaderController {
                        @RequestParam(defaultValue = "null") Integer routeId,
                        @RequestParam(defaultValue = "null") String leaderName) {
         List<LitemallLeader> list;
-        if (StringUtils.isEmpty(routeId)) {
-            list = leaderService.QueryLeaderByRoute(routeId);
+        if (!StringUtils.isEmpty(routeId)) {
+            list = leaderService.QueryLeaderByRoute(store,routeId,leaderName);
         } else {
             list = leaderService.QueryLeader(store, leaderName);
         }
-        return ResponseUtil.ok(list);
+        int size = list.size();
+        Map<String, Object> data = new HashMap<>();
+        data.put("size",size);
+        data.put("list",list);
+        return ResponseUtil.ok(data);
     }
 
     @RequiresPermissions("admin:leader:update")
@@ -51,7 +59,7 @@ public class AdminLeaderController {
         if (leaderService.updateById(leader) == 0) {
             return ResponseUtil.updatedDataFailed();
         }
-        return ResponseUtil.ok(leader);
+        return ResponseUtil.ok();
     }
 
     @RequiresPermissions("admin:leader:delete")
@@ -65,6 +73,21 @@ public class AdminLeaderController {
             return ResponseUtil.updatedDataFailed();
         }
         return ResponseUtil.ok();
+    }
+
+    @RequiresPermissions("admin:leader:userDetail")
+    @RequiresPermissionsDesc(menu = {"团长管理", "团长信息"}, button = "用户")
+    @PostMapping("/userDetail")
+    public Object userDetail(@RequestParam Integer leaderId){
+        if (!StringUtils.isEmpty(leaderId)){
+            return ResponseUtil.badArgumentValue();
+        }
+        List<LitemallUser> list = leaderService.QueryUser(leaderId);
+        int size = list.size();
+        Map<String, Object> data = new HashMap<>();
+        data.put("size",size);
+        data.put("list",list);
+        return ResponseUtil.ok(data);
     }
 
     @RequiresPermissions("admin:leader:accout")

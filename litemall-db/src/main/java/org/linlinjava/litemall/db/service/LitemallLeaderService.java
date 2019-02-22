@@ -52,7 +52,7 @@ public class LitemallLeaderService {
      * @param routeId
      * @return
      */
-    public List<LitemallLeader> QueryLeaderByRoute(Integer routeId) {
+    public List<LitemallLeader> QueryLeaderByRoute(String store,Integer routeId,String leaderName) {
 
         List<LitemallLeader> list = new ArrayList();
 
@@ -63,7 +63,16 @@ public class LitemallLeaderService {
 
         for (LitemallRouteLeader routeLeader : routeLeaderList) {
             int leaderId = routeLeader.getLeaderId();
-            LitemallLeader leader = leaderMapper.selectByPrimaryKey(leaderId);
+            LitemallLeaderExample example1 = new LitemallLeaderExample();
+            LitemallLeaderExample.Criteria criteria1 = example1.createCriteria();
+            if (!StringUtils.isEmpty(store)){
+                criteria1.andStoreEqualTo(store);
+            }
+            if (!StringUtils.isEmpty(leaderName)){
+                criteria1.andLeaderNameEqualTo(leaderName);
+            }
+            LitemallLeader leader;
+            leader = leaderMapper.selectByPrimaryKey(leaderId);
             list.add(leader);
         }
         return list;
@@ -111,7 +120,8 @@ public class LitemallLeaderService {
         Iterator<LitemallLeaderUser> ite = litemallLeaderUsers.iterator();
         List<LitemallUser> list = new ArrayList<>();
         while (ite.hasNext()) {
-            LitemallUser user = userMapper.selectByPrimaryKey(ite.next().getUserId());
+            LitemallUser user;
+            user = userMapper.selectByPrimaryKey(ite.next().getUserId());
             list.add(user);
         }
         return list;
