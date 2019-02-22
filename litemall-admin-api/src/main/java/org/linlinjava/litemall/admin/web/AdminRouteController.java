@@ -76,11 +76,10 @@ public class AdminRouteController {
         int count = routeService.updateRouteById(route);
         HashMap<String, Object> data = new HashMap<>();
         if (count > 0) {
-            data.put("state", "successful");
+            return ResponseUtil.ok();
         } else {
-            data.put("state", "failed");
+            return ResponseUtil.updatedDataFailed();
         }
-        return ResponseUtil.ok(data);
     }
 
     @RequiresPermissions("admin:route:delete")
@@ -90,12 +89,10 @@ public class AdminRouteController {
         int count[] = routeService.deleteById(id);
         HashMap<String, Object> data = new HashMap<>();
         if (count != null) {
-            data.put("state", "successful");
-            data.put("total", count);
+            return ResponseUtil.ok(count);
         } else {
-            data.put("state", "failed");
+            return ResponseUtil.updatedDataFailed();
         }
-        return ResponseUtil.ok(data);
     }
 
     @RequiresPermissions("admin:route:put")
@@ -112,11 +109,9 @@ public class AdminRouteController {
         HashMap<String, Object> data = new HashMap<>();
         int count = routeService.add(route);
         if (count <= 0) {
-            data.put("state", "failed");
+            return ResponseUtil.updatedDataFailed();
         } else {
-            data.put("state", "successful");
-            data.put("total", count);
+            return ResponseUtil.ok(count);
         }
-        return ResponseUtil.ok(data);
     }
 }
