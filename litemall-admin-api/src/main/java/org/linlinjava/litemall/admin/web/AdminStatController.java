@@ -46,7 +46,6 @@ public class AdminStatController {
         StatVo statVo = new StatVo();
         statVo.setColumns(columns);
         statVo.setRows(rows);
-
         return ResponseUtil.ok(statVo);
     }
 

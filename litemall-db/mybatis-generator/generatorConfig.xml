@@ -44,8 +44,8 @@
         <!--数据库连接信息-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1:3306/litemall?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;verifyServerCertificate=false&amp;useSSL=false"
-                        userId="litemall"
-                        password="litemall123456"/>
+                        userId="root"
+                        password="123"/>
 
         <javaTypeResolver>
             <property name="useJSR310Types" value="true"/>
@@ -172,6 +172,15 @@
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
         <table tableName="litemall_permission">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="litemall_leader">
+        <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+    </table>
+        <table tableName="litemall_route_leader">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="litemall_route">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>

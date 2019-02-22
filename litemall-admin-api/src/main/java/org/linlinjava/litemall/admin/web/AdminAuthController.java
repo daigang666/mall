@@ -56,7 +56,6 @@ public class AdminAuthController {
             return ResponseUtil.fail(ADMIN_INVALID_ACCOUNT, "用户帐号或密码不正确");
         } catch (LockedAccountException lae) {
             return ResponseUtil.fail(ADMIN_INVALID_ACCOUNT, "用户帐号已锁定不可用");
-
         } catch (AuthenticationException ae) {
             return ResponseUtil.fail(ADMIN_INVALID_ACCOUNT, ae.getMessage());
         }

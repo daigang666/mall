@@ -1,12 +1,12 @@
-# mall
+# litemall
 
 又一个小商场系统。
 
-mall = Spring Boot后端 + Vue管理员前端 + 微信小程序用户前端
+litemall = Spring Boot后端 + Vue管理员前端 + 微信小程序用户前端
 
-* [文档](https://linlinjava.gitbook.io/mall)
-* [贡献](https://linlinjava.gitbook.io/mall/contribute)
-* [FAQ](https://linlinjava.gitbook.io/mall/7)
+* [文档](https://linlinjava.gitbook.io/litemall)
+* [贡献](https://linlinjava.gitbook.io/litemall/contribute)
+* [FAQ](https://linlinjava.gitbook.io/litemall/7)
 
 ## 上架实例
 
@@ -14,8 +14,8 @@ mall = Spring Boot后端 + Vue管理员前端 + 微信小程序用户前端
 
 ## 项目代码
 
-* [码云](https://gitee.com/linlinjava/mall)
-* [GitHub](https://github.com/linlinjava/mall)
+* [码云](https://gitee.com/linlinjava/litemall)
+* [GitHub](https://github.com/linlinjava/litemall)
 
 ## 项目架构
 ![](./doc/pic/1.png)    
@@ -61,7 +61,7 @@ mall = Spring Boot后端 + Vue管理员前端 + 微信小程序用户前端
 
 由于没有上线，只能在微信开发工具中测试运行：
 
-1. 微信开发工具导入mall-wx项目;
+1. 微信开发工具导入litemall-wx项目;
 2. 项目配置，启用“不校验合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书”
 3. 点击“编译”，即可在微信开发工具预览效果；
 4. 也可以点击“预览”，然后手机扫描登录。
@@ -86,19 +86,19 @@ mall = Spring Boot后端 + Vue管理员前端 + 微信小程序用户前端
     * [Nodejs](https://nodejs.org/en/download/)
     * [微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
     
-2. 数据库依次导入mall-db/sql下的数据库文件
-    * mall_schema.sql
-    * mall_table.sql
-    * mall_data.sql
+2. 数据库依次导入litemall-db/sql下的数据库文件
+    * litemall_schema.sql
+    * litemall_table.sql
+    * litemall_data.sql
 
 3. 启动小商场和管理后台的后端服务
 
     打开命令行，输入以下命令
     ```bash
-    cd mall
+    cd litemall
     mvn install
     mvn package
-    cd ./mall-all
+    cd ./litemall-all
     mvn spring-boot:run
     ```
     
@@ -107,7 +107,7 @@ mall = Spring Boot后端 + Vue管理员前端 + 微信小程序用户前端
     打开命令行，输入以下命令
     ```bash
     npm install -g cnpm --registry=https://registry.npm.taobao.org
-    cd mall/mall-admin
+    cd litemall/litemall-admin
     cnpm install
     cnpm run dev
     ```
@@ -115,9 +115,9 @@ mall = Spring Boot后端 + Vue管理员前端 + 微信小程序用户前端
     
 5. 启动小商城前端
    
-   打开微信开发者工具，导入mall-wx模块,点击`编译`即可，此时可以预览小商场效果。
+   打开微信开发者工具，导入litemall-wx模块,点击`编译`即可，此时可以预览小商场效果。
 
-   这里存在两套小商场前端mall-wx和renard-wx，开发者可以分别导入和测试。
+   这里存在两套小商场前端litemall-wx和renard-wx，开发者可以分别导入和测试。
    
 注意：
 > 这里只是最简启动方式，而且小商场的微信登录会失败，更详细方案请参考文档。
@@ -160,24 +160,41 @@ V 3.0.0 完成以下目标：
    项目介绍：基于Node.js+MySQL开发的开源微信小程序商城（微信小程序）
 
    项目参考：
-    （1）mall项目数据库基于nideshop-mini-program项目数据库；
-    （2）mall项目的mall-wx模块基于nideshop-mini-program开发。
+    （1）litemall项目数据库基于nideshop-mini-program项目数据库；
+    （2）litemall项目的litemall-wx模块基于nideshop-mini-program开发。
 
 2. [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
   
    项目介绍： 一个基于Vue和Element的后台集成方案
   
-   项目参考：mall项目的mall-admin模块的前端框架基于该项目修改扩展。
+   项目参考：litemall项目的litemall-admin模块的前端框架基于该项目修改扩展。
 
 3. [mall-admin-web](https://github.com/macrozheng/mall-admin-web)
 
    项目介绍：mall-admin-web是一个电商后台管理系统的前端项目，基于Vue+Element实现。
 
-   项目参考：mall项目的mall-admin模块的一些页面布局样式参考了该项目。
+   项目参考：litemall项目的litemall-admin模块的一些页面布局样式参考了该项目。
 
 4. [biu](https://github.com/CaiBaoHong/biu)
 
    项目介绍：管理后台项目开发脚手架，基于vue-element-admin和springboot搭建，前后端分离方式开发和部署。
 
-   项目参考：mall项目的权限管理功能参考了该项目。
+   项目参考：litemall项目的权限管理功能参考了该项目。
 
+## 问题
+
+![](doc/pic/qq.png)
+
+ * 开发者有问题或者好的建议可以用Issues反馈交流，请给出详细信息
+ * 在开发交流群中应讨论开发、业务和合作问题
+ * 如果真的需要QQ群里提问，请在提问前先完成以下过程：
+    * 请仔细阅读本项目文档，特别是是[**FAQ**](./doc/FAQ.md)，查看能否解决；
+    * 请阅读[提问的智慧](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md)；
+    * 请百度或谷歌相关技术；
+    * 请查看相关技术的官方文档，例如微信小程序的官方文档；
+    * 请提问前尽可能做一些DEBUG或者思考分析，然后提问时给出详细的错误相关信息以及个人对问题的理解。
+
+## License
+
+[MIT](https://github.com/linlinjava/litemall/blob/master/LICENSE)
+Copyright (c) 2018-present linlinjava
